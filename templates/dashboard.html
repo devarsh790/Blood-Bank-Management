@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="row mb-4">
+  <div class="col-md-12">
+    <div class="card shadow-sm">
+      <div class="card-header bg-white d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 text-primary"><i class="fas fa-tachometer-alt mr-2"></i> Dashboard</h4>
+        <span class="badge badge-primary px-3 py-2">Welcome, {{session.e_id}}</span>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title text-muted mb-4">Current Blood Inventory Status</h5>
+
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col" class="text-center" width="50%">Blood Group</th>
+                <th scope="col" class="text-center">Volume (Units)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for detail in details %}
+              <tr>
+                <td class="text-center font-weight-bold text-danger">{{detail.B_GROUP}}</td>
+                <td class="text-center">
+                  <span class="badge badge-pill badge-secondary p-2" style="font-size: 1rem; min-width: 60px;">
+                    {{detail.TOTAL_PACKETS}}
+                  </span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card shadow-sm text-center mb-4">
+      <div class="card-body">
+        <i class="fas fa-hand-holding-heart fa-3x text-danger mb-3"></i>
+        <h5>New Donation</h5>
+        <a href="/donate" class="btn btn-outline-danger btn-sm mt-2">Add Donor</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm text-center mb-4">
+      <div class="card-body">
+        <i class="fas fa-plus-circle fa-3x text-success mb-3"></i>
+        <h5>Add Blood Stock</h5>
+        <a href="/bloodform" class="btn btn-outline-success btn-sm mt-2">Update Inventory</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card shadow-sm text-center mb-4">
+      <div class="card-body">
+        <i class="fas fa-list-alt fa-3x text-info mb-3"></i>
+        <h5>Donor Logs</h5>
+        <a href="/donorlogs" class="btn btn-outline-info btn-sm mt-2">View History</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
